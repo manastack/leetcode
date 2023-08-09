@@ -14,7 +14,7 @@
   },
   "scripts": {
     "setup": "./scripts/nvm-use.sh && pnpm i",
-    "start": "nodemon src/palindrome/compare.ts",
+    "start": "nodemon src/palindrome-number/compare.ts",
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "coverage": "jest --coverage",
