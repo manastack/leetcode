@@ -14,7 +14,7 @@
   },
   "scripts": {
     "setup": "./scripts/nvm-use.sh && pnpm i",
-    "start": "nodemon src/longest-palindromic-substring/compare.ts",
+    "start": "nodemon src/longest-common-prefix/compare.ts",
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "coverage": "jest --coverage",
