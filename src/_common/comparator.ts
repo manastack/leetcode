@@ -12,13 +12,14 @@ export type Case<Args extends Array<unknown>> = {
 type Fn<Args extends Array<unknown>> = (...args: Args) => unknown
 
 type Props<Args extends Array<unknown>> = {
+  callback?: ((res?: unknown) => unknown) | null
   cases: Case<Args>[]
   fns: Fn<Args>[]
   repeat?: number
 }
 
 const comparator = <Args extends Array<unknown>>(props: Props<Args>): void => {
-  const { cases, fns, repeat = 10 } = props
+  const { callback = null, cases, fns, repeat = 10 } = props
 
   cases.forEach(({ args, description: desc = '', timers = [] }, i) => {
     console.log(`\nCase ${i}:${desc ? `\n${desc}` : ''}\n`) // eslint-disable-line no-console
@@ -27,7 +28,8 @@ const comparator = <Args extends Array<unknown>>(props: Props<Args>): void => {
       const timeArr: number[] = []
       for (let j = 0; j < repeat; j += 1) {
         const start = performance.now()
-        fn(...args)
+        const res = fn(...args)
+        callback?.(res)
         const end = performance.now()
         timeArr.push(end - start)
       }
